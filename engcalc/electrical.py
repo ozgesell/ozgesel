@@ -8,7 +8,11 @@ def ohm(v: Optional[float] = None, i: Optional[float] = None, r: Optional[float]
 	if v is None:
 		return {"v": i * r}
 	if i is None:
+		if r == 0:
+			raise ValueError("Resistance cannot be zero when computing current")
 		return {"i": v / r}
+	if i == 0:
+		raise ValueError("Current cannot be zero when computing resistance")
 	return {"r": v / i}
 
 
